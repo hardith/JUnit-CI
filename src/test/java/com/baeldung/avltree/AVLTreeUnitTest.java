@@ -19,6 +19,17 @@ public class AVLTreeUnitTest {
     }
 
     @Test
+    public void givenEmptyTree_whenInsertCalled_heightShouldBeZero2() {
+        AVLTree tree = new AVLTree();
+        tree.insert(1);
+        tree.insert(7);
+        tree.insert(8);
+        tree.insert(3);
+        tree.insert(2);
+        Assert.assertEquals(2, tree.height());
+    }
+
+    @Test
     public void givenEmptyTree_whenInsertCalled_treeShouldBeAvl() {
         AVLTree tree = new AVLTree();
         tree.insert(1);
@@ -29,6 +40,14 @@ public class AVLTreeUnitTest {
     public void givenSampleTree_whenInsertCalled_treeShouldBeAvl() {
         AVLTree tree = getSampleAVLTree();
         int newKey = 11;
+        tree.insert(newKey);
+        Assert.assertTrue(isAVL(tree));
+    }
+
+    @Test
+    public void givenSampleTree_whenInsertCalled_treeShouldBeAvlNegative() {
+        AVLTree tree = getSampleAVLTree();
+        int newKey = -1;
         tree.insert(newKey);
         Assert.assertTrue(isAVL(tree));
     }
@@ -63,6 +82,21 @@ public class AVLTreeUnitTest {
         Assert.assertTrue(isAVL(tree, tree.getRoot()));
     }
 
+    @Test
+    public void givenSampleTree_whenDeleteCalled_treeShouldBeAvl2() {
+        AVLTree tree = getSampleAVLTree();
+        tree.delete(9);
+        Assert.assertTrue(isAVL(tree, tree.getRoot()));
+    }
+
+    @Test
+    public void givenSampleTree_whenDeleteCalled_treeShouldBeAvlDelete() {
+        AVLTree tree = getSampleAVLTree();
+        tree.delete(1);
+        tree.delete(3);
+        tree.delete(4);
+        Assert.assertTrue(isAVL(tree, tree.getRoot()));
+    }
 
     private boolean isAVL(AVLTree tree) {
         return isAVL(tree, tree.getRoot());
