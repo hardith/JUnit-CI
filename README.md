@@ -1,5 +1,6 @@
 # JUnit-CI
 
-[![Build Status](https://app.travis-ci.com/hardith/JUnit-CI.svg?branch=master)](https://app.travis-ci.com/hardith/JUnit-CI)
+[![Build Status](https://app.travis-ci.com/hardith/JUnit-CI.svg?branch=master)](https://app.travis-ci.com/hardith/JUnit-CI) [![Codecov](https://img.shields.io/codecov/c/github/hardith/JUnit-CI)](https://app.codecov.io/gh/hardith/JUnit-CI)
+
 
 Maven project with CI and Test Coverage
