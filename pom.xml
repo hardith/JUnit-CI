@@ -60,91 +60,91 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.15</version>
-          <configuration>
-            <!-- Sets the VM argument line used when unit tests are run. -->
-            <argLine>${surefireArgLine}</argLine>
-          </configuration>
-        </plugin>
 <!--        <plugin>-->
 <!--          <groupId>org.apache.maven.plugins</groupId>-->
 <!--          <artifactId>maven-surefire-plugin</artifactId>-->
-<!--          <version>2.17</version>-->
+<!--          <version>2.15</version>-->
 <!--          <configuration>-->
-<!--            <properties>-->
-<!--              <property>-->
-<!--                <name>listener</name>-->
-<!--                <value>org.evosuite.runtime.InitializingListener</value>-->
-<!--              </property>-->
-<!--            </properties>-->
+<!--            &lt;!&ndash; Sets the VM argument line used when unit tests are run. &ndash;&gt;-->
+<!--            <argLine>${surefireArgLine}</argLine>-->
 <!--          </configuration>-->
 <!--        </plugin>-->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.17</version>
+          <configuration>
+            <properties>
+              <property>
+                <name>listener</name>
+                <value>org.evosuite.runtime.InitializingListener</value>
+              </property>
+            </properties>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>0.8.6</version>
-<!--          <executions>-->
-<!--            &lt;!&ndash;first execution : for preparing JaCoCo runtime agent&ndash;&gt;-->
-<!--            <execution>-->
-<!--              <id>prepare-tests</id>-->
-<!--              <goals>-->
-<!--                <goal>prepare-agent</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--            &lt;!&ndash;second execution : for creating code coverage reports&ndash;&gt;-->
-<!--            <execution>-->
-<!--              <id>report</id>-->
-<!--              <phase>post-integration-test</phase>-->
-<!--              <goals>-->
-<!--                <goal>report</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--          </executions>-->
           <executions>
-            <!--
-                Prepares the property pointing to the JaCoCo runtime agent which
-                is passed as VM argument when Maven the Surefire plugin is executed.
-              -->
+            <!--first execution : for preparing JaCoCo runtime agent-->
             <execution>
-              <id>pre-unit-test</id>
+              <id>prepare-tests</id>
               <goals>
                 <goal>prepare-agent</goal>
               </goals>
-              <configuration>
-                <!-- Sets the path to the file which contains the execution data. -->
-                <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-                <!--
-                    Sets the name of the property containing the settings
-                    for JaCoCo runtime agent.
-                  -->
-                <propertyName>surefireArgLine</propertyName>
-              </configuration>
             </execution>
-            <!--
-                Ensures that the code coverage report for unit tests is created after
-                unit tests have been run.
-              -->
+            <!--second execution : for creating code coverage reports-->
             <execution>
-              <id>post-unit-test</id>
-              <phase>test</phase>
+              <id>report</id>
+              <phase>post-integration-test</phase>
               <goals>
                 <goal>report</goal>
               </goals>
-              <configuration>
-                <!-- Sets the path to the file which contains the execution data. -->
-                <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-                <!-- Sets the output directory for the code coverage report. -->
-                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-              </configuration>
             </execution>
-            <!--
-                Prepares the property pointing to the JaCoCo runtime agent which
-                is passed as VM argument when Maven the Failsafe plugin is executed.
-              -->
           </executions>
+<!--          <executions>-->
+<!--            &lt;!&ndash;-->
+<!--                Prepares the property pointing to the JaCoCo runtime agent which-->
+<!--                is passed as VM argument when Maven the Surefire plugin is executed.-->
+<!--              &ndash;&gt;-->
+<!--            <execution>-->
+<!--              <id>pre-unit-test</id>-->
+<!--              <goals>-->
+<!--                <goal>prepare-agent</goal>-->
+<!--              </goals>-->
+<!--              <configuration>-->
+<!--                &lt;!&ndash; Sets the path to the file which contains the execution data. &ndash;&gt;-->
+<!--                <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>-->
+<!--                &lt;!&ndash;-->
+<!--                    Sets the name of the property containing the settings-->
+<!--                    for JaCoCo runtime agent.-->
+<!--                  &ndash;&gt;-->
+<!--                <propertyName>surefireArgLine</propertyName>-->
+<!--              </configuration>-->
+<!--            </execution>-->
+<!--            &lt;!&ndash;-->
+<!--                Ensures that the code coverage report for unit tests is created after-->
+<!--                unit tests have been run.-->
+<!--              &ndash;&gt;-->
+<!--            <execution>-->
+<!--              <id>post-unit-test</id>-->
+<!--              <phase>test</phase>-->
+<!--              <goals>-->
+<!--                <goal>report</goal>-->
+<!--              </goals>-->
+<!--              <configuration>-->
+<!--                &lt;!&ndash; Sets the path to the file which contains the execution data. &ndash;&gt;-->
+<!--                <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>-->
+<!--                &lt;!&ndash; Sets the output directory for the code coverage report. &ndash;&gt;-->
+<!--                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>-->
+<!--              </configuration>-->
+<!--            </execution>-->
+<!--            &lt;!&ndash;-->
+<!--                Prepares the property pointing to the JaCoCo runtime agent which-->
+<!--                is passed as VM argument when Maven the Failsafe plugin is executed.-->
+<!--              &ndash;&gt;-->
+<!--          </executions>-->
         </plugin>
 
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
@@ -156,18 +156,18 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
         </plugin>
-<!--        <plugin>-->
-<!--          <artifactId>maven-surefire-plugin</artifactId>-->
-<!--          <version>2.22.1</version>-->
-<!--&lt;!&ndash;          <configuration>&ndash;&gt;-->
-<!--&lt;!&ndash;            <properties>&ndash;&gt;-->
-<!--&lt;!&ndash;              <property>&ndash;&gt;-->
-<!--&lt;!&ndash;                <name>listener</name>&ndash;&gt;-->
-<!--&lt;!&ndash;                <value>org.evosuite.runtime.InitializingListener</value>&ndash;&gt;-->
-<!--&lt;!&ndash;              </property>&ndash;&gt;-->
-<!--&lt;!&ndash;            </properties>&ndash;&gt;-->
-<!--&lt;!&ndash;          </configuration>&ndash;&gt;-->
-<!--        </plugin>-->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+<!--          <configuration>-->
+<!--            <properties>-->
+<!--              <property>-->
+<!--                <name>listener</name>-->
+<!--                <value>org.evosuite.runtime.InitializingListener</value>-->
+<!--              </property>-->
+<!--            </properties>-->
+<!--          </configuration>-->
+        </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
