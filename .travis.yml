@@ -12,3 +12,6 @@ after_success:
 #   - mvn clean evosuite:generate evosuite:export org.apache.maven.plugins:maven-surefire-plugin:2.17:test jacoco:prepare-agent install jacoco:report
 #   - mvn jacoco:prepare-agent install jacoco:report
    - bash <(curl -s https://codecov.io/bash)
+after_deploy:
+   - mvn jacoco:report
+   - bash <(curl -s https://codecov.io/bash)
